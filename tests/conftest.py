@@ -45,4 +45,4 @@ def initialize_environment():
 
     yield
 
-    shutil.rmtree(saq.DATA_DIR)
+    #shutil.rmtree(saq.DATA_DIR)

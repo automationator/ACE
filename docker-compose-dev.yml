@@ -25,12 +25,18 @@ services:
         volumes:
             - .:/opt/ace
             - ace-data-volume:/opt/ace/data
+            - ace-home-volume:/home/ace
         hostname: ace
         container_name: ace-dev
+        ports: 
+            - 5000:5000
 volumes:
     ace-data-volume:
         name: ace-data-dev
 
     ace-db-volume:
         name: ace-db-dev
+
+    ace-home-volume:
+        name: ace-home-dev
         

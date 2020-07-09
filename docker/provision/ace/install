@@ -127,4 +127,11 @@ done
     #ace enc set -p ace
 #fi
 
+if [ ! -e /home/ace/.vimrc -o -n "$RESET" ]; then cp etc/vimrc /home/ace/.vimrc; fi
+if [ ! -e /home/ace/.screenrc -o -n "$RESET" ]; then cp etc/screenrc /home/ace/.screenrc; fi
+if [ ! -e /home/ace/.vscode-server/extensions ]; then mkdir -p /home/ace/.vscode-server/extensions; fi
+if [ ! -e /home/ace/.vscode-server/extensionsCache ]; then mkdir -p /home/ace/.vscode-server/extensionsCache; fi
+
+chown -R ace:ace /home/ace
+
 docker/provision/ace/install_ssl_certs.sh
