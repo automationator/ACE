@@ -34,7 +34,7 @@ do
     then
         echo "executing $f in container..."
         docker exec -it -u ace ace-dev /bin/bash -il "docker/provision/ace/site/$f"
-    else
+    elif [[ "$f" == *".sh"* ]]
         echo "executing $f on host..."
         docker/provision/ace/site/$f
     fi

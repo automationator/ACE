@@ -27,4 +27,13 @@ while ($true) {
 
 docker exec -it -u ace ace-dev /bin/bash -it -c 'ace user add --password=analyst analyst analyst@localhost'
 
-# TODO
+$files = Get-ChildItem -Path ".\docker\provision\ace\site" | Where-Object { $_.Name -ne "README"} | Sort-Object
+ForEach ($f in $files) {
+    if ($f -like "*_container.sh") {
+        Write-Output("executing $f in container...")
+        docker exec -it -u ace ace-dev /bin/bash -il "docker/provision/ace/site/$f"
+    } elseif ($f -like "*.ps1")  {
+        Write-Output("executing $f on host...")
+        & ".\docker\provision\ace\site\$f"
+    }
+}
