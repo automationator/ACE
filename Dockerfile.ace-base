@@ -47,7 +47,9 @@ RUN groupadd ace \
     && chown ace:ace /venv 
 RUN mkdir /usr/local/share/ca-certificates/extra
 COPY ssl/extra /usr/local/share/ca-certificates/extra
-RUN update-ca-certificates \
+COPY docker/provision/ace/install_site_CAs.sh /install_site_CAs.sh
+RUN /install_site_CAs.sh \
+    && update-ca-certificates \
     && python3 -m pip config set global.cert /etc/ssl/certs/ca-certificates.crt \
     && python2.7 -m pip config set global.cert /etc/ssl/certs/ca-certificates.crt \ 
     && python3 -m pip install pip virtualenv --upgrade \
